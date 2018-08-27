@@ -7,11 +7,19 @@ namespace ECS {
     }
 
 
-    Entity &ECSManager::MakeEntity() {
+    Entity &ECSManager::MakeEntity(std::string name) {
         //Create new unque pointer and add it to the entites list
-        m_entities.push_back(std::make_unique<Entity>(entityID++));
+        m_entities.push_back(std::make_unique<Entity>(entityID++, name));
         //return the newly created entity
         return *m_entities.back();
+    }
+
+    Entity *ECSManager::GetEntityByName(const std::string &name) {
+        for(const auto& entity : m_entities){
+            if(entity.get()->m_name == name)
+                return entity.get();
+        }
+        return nullptr;
     }
 
     void ECSManager::RemoveEntity(Entity &entity) {
@@ -76,4 +84,5 @@ namespace ECS {
 
         return requiredComponents;
     }
+
 }

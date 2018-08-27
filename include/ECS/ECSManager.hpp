@@ -22,7 +22,12 @@ namespace ECS {
         /// <summary> Makes a new entity within the ECS manager </summary>
         /// <param name="entity"> A reference to the entity to create using the ECS system </param>
         /// <returns> A reference to the newly created entity </returns>
-        Entity &MakeEntity();
+        Entity &MakeEntity(std::string name = "Entity");
+
+        /// <summary> Get an entity by name that exists in the ECS manager </summary>
+        /// <param name="name"> Name of the entity to get </param>
+        /// <returns> A pointer to the entity (nullptr if no entities were found) </returns>
+        Entity* GetEntityByName(const std::string& name);
 
         /// <summary> Remove an entity from the ECS manager, </summary>
         /// <param name="entity"> A reference to the entity to remove in the ECS system </param>
